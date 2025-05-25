@@ -1,71 +1,93 @@
-🧬 Colorectal Cancer Prediction
+# 🧬 Colorectal Cancer Prediction
+
 This project implements a machine learning system to predict the likelihood of colorectal cancer survival based on clinical, demographic, and lifestyle data. It uses a structured MLOps workflow with experiment tracking, model versioning, and a Flask-based user interface, making it suitable for scalable deployment and healthcare research.
 
-🎯 Objective
+---
+
+## 🎯 Objective
+
 To predict 5-year survival outcomes in colorectal cancer patients using clinical and lifestyle features, and deploy the solution with MLOps best practices.
 
-🩺 Use Case
-Early prediction of cancer survival can support oncologists in personalized treatment planning, healthcare cost estimation, and patient risk stratification. The app allows non-technical users to input patient details and receive survival predictions instantly.
+---
 
-📊 Dataset Overview
-Source: Synthetic healthcare data (data.csv)
+## 🩺 Use Case
 
-Features: Includes 27 attributes such as age, tumor size, treatment type, lifestyle factors, and healthcare costs.
+Early prediction of cancer survival can support oncologists in:
+- Personalized treatment planning  
+- Healthcare cost estimation  
+- Patient risk stratification  
 
-Target: Survival_Prediction (Yes/No for 5-year survival)
+The app allows non-technical users to input patient details and receive survival predictions instantly.
 
-⚙️ Workflow
-1. Data Processing
-Loaded and cleaned data using pandas
+---
 
-Encoded categorical variables with LabelEncoder
+## 📊 Dataset Overview
 
-Applied SelectKBest for feature selection
+- **Source**: Synthetic healthcare data (`data.csv`)  
+- **Features**: 27 attributes including age, tumor size, treatment type, lifestyle factors, and healthcare costs  
+- **Target**: `Survival_Prediction` (Yes/No for 5-year survival)
 
-Standardized data using StandardScaler
+---
 
-2. Model Training
-Used GradientBoostingClassifier for classification
+## ⚙️ Workflow
 
-Tracked training metrics (accuracy, precision, recall, ROC AUC) using MLflow
+### 1. Data Processing
+- Loaded and cleaned data using `pandas`
+- Encoded categorical variables using `LabelEncoder`
+- Applied `StandardScaler` for normalization
+- Used `SelectKBest` for feature selection
 
-Serialized model and scaler with joblib
+### 2. Model Training
+- Model: `GradientBoostingClassifier`  
+- Evaluation: Accuracy, Precision, Recall, F1 Score, ROC AUC  
+- Saved artifacts using `joblib`
 
-3. Web Application
-Built a web interface using Flask
+### 3. Web Application
+- Developed with **Flask**
+- HTML-based UI form for predictions
+- Inputs scaled and passed to model in real-time
 
-Integrated trained model to predict survival based on form input
+### 4. Experiment Tracking
+- Tracked with **MLflow**
+- Configured for remote tracking via DAGsHub
+- Logs include metrics, models, parameters
 
-Served predictions dynamically via /predict endpoint
+---
 
-4. Experiment Tracking
-MLflow setup for logging metrics and storing model versions
+## 📈 Performance
 
-Integrated with DAGsHub for remote tracking (via MLFLOW_TRACKING_URI setup)
+- **Accuracy**: ~90% on test data  
+- Robust performance across clinical and lifestyle feature combinations  
 
-🧪 Key Features
-Form-based user input for real-time survival prediction
+---
 
-Dynamic web dashboard with Flask templating
+## 🧰 Tech Stack
 
-Model and scaler loading via joblib
+- **ML & Data**: Python, Scikit-learn, Pandas, Numpy, Joblib  
+- **Web App**: Flask, HTML/CSS  
+- **MLOps Tools**: MLflow, DAGsHub  
+- **Version Control**: Git, GitHub  
 
-Modular code architecture using custom logging and exceptions
+---
 
-Prepared for scalable deployment with future integration of CI/CD and cloud services
+## 🔮 Future Improvements
 
-📈 Performance
-Model Used: Gradient Boosting Classifier
+- CI/CD with Jenkins & Docker  
+- Cloud deployment using GCP/AWS  
+- Model explainability (SHAP/LIME)  
+- Enhanced validation with real-world datasets  
 
-Accuracy: ~90% (based on test data)
+---
 
-Metrics Tracked: Accuracy, Precision, Recall, F1 Score, ROC AUC
+## 🧪 Example Inputs (UI Form)
 
-🧰 Tech Stack
-Languages & Libraries: Python, Scikit-learn, Pandas, Numpy, Joblib
+| Feature             | Example Value |
+|---------------------|----------------|
+| Tumor Size (mm)     | 69             |
+| Treatment Type       | Combination (encoded) |
+| Diabetes             | No (0)         |
+| Mortality Rate       | 5              |
+| Healthcare Costs ($) | 54,413         |
 
-Web App: Flask, HTML/CSS (via Jinja templates)
+---
 
-MLOps Tools: MLflow, DAGsHub
-
-Version Control: Git, GitHub
